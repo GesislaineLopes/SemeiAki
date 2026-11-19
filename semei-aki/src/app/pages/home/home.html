@@ -1,0 +1,222 @@
+<main class="login-gradient min-h-screen text-[#3E0911]">
+  <header class="sticky top-0 z-30 border-b border-white/45 bg-[#fffdf9]/75 px-5 backdrop-blur-xl sm:px-8">
+    <div class="mx-auto flex h-16 max-w-[810px] items-center justify-between gap-5">
+      <div class="flex items-center gap-3 sm:gap-5">
+        <button
+          type="button"
+          (click)="menuOpen = true"
+          class="grid size-9 shrink-0 place-items-center rounded-xl border border-[#85383E]/15 bg-[#fffdf9]/85 text-[#85383E] shadow-[0_5px_16px_rgba(62,9,17,0.07)] transition hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#85383E]"
+          aria-label="Abrir menu"
+          [attr.aria-expanded]="menuOpen"
+          aria-controls="main-menu"
+        >
+          <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" />
+          </svg>
+        </button>
+        <a routerLink="/" class="flex items-center" aria-label="SemeiAki, início">
+          <img src="/semeiaki-logo.png" alt="SemeiAki — Produtos da Nossa Terra" class="w-[94px] object-contain sm:w-[100px]" />
+        </a>
+      </div>
+      <div class="flex items-center gap-2">
+        <a
+          routerLink="/produtor"
+          class="rounded-xl bg-[#85383E] px-3 py-2 text-[10px] font-extrabold text-[#D7CAB7] shadow-[0_5px_16px_rgba(62,9,17,0.07)] transition hover:bg-[#3E0911] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#85383E] sm:px-4 sm:text-[11px]"
+        >
+          Anunciar produto
+        </a>
+        <a
+          routerLink="/login"
+          class="hidden rounded-xl border border-[#85383E]/20 bg-[#fffdf9]/85 px-4 py-2 text-[11px] font-extrabold text-[#85383E] shadow-[0_5px_16px_rgba(62,9,17,0.07)] transition hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#85383E] sm:block"
+        >
+          Entrar
+        </a>
+      </div>
+    </div>
+  </header>
+
+  @if (menuOpen) {
+    <div class="fixed inset-0 z-50">
+      <button
+        type="button"
+        class="absolute inset-0 bg-[#3E0911]/40 backdrop-blur-[3px]"
+        (click)="closeMenu()"
+        aria-label="Fechar menu"
+      ></button>
+      <aside
+        id="main-menu"
+        class="relative flex h-full w-[min(86vw,236px)] flex-col bg-[#fffdf9] p-4 shadow-[20px_0_60px_rgba(62,9,17,0.2)]"
+        aria-label="Menu do site"
+      >
+        <div class="flex items-center justify-between gap-4">
+          <a routerLink="/" (click)="closeMenu()" aria-label="SemeiAki, início">
+            <img src="/semeiaki-logo.png" alt="SemeiAki — Produtos da Nossa Terra" class="h-auto w-[88px]" />
+          </a>
+          <button type="button" (click)="closeMenu()" class="grid size-8 place-items-center rounded-lg bg-[#85383E]/10 text-[#85383E]" aria-label="Fechar menu">
+            <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="m6 6 12 12M18 6 6 18" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+        <nav class="mt-7 space-y-1.5" aria-label="Links do menu">
+          <a routerLink="/" (click)="closeMenu()" class="flex h-11 w-full items-center gap-2 rounded-xl bg-[#85383E] px-2.5 text-[11px] font-extrabold text-[#D7CAB7]">
+            <span class="grid size-6 place-items-center rounded-md bg-white/10 text-[10px]">01</span> Início
+          </a>
+          <a href="#catalog-title" (click)="closeMenu()" class="flex h-11 w-full items-center gap-2 rounded-xl px-2.5 text-[11px] font-extrabold text-[#383C23] transition hover:bg-[#71774B]/10">
+            <span class="grid size-6 place-items-center rounded-md bg-[#71774B]/10 text-[10px]">02</span> Ver catálogo
+          </a>
+          <a routerLink="/login" (click)="closeMenu()" class="flex h-11 w-full items-center gap-2 rounded-xl px-2.5 text-[11px] font-extrabold text-[#383C23] transition hover:bg-[#71774B]/10">
+            <span class="grid size-6 place-items-center rounded-md bg-[#71774B]/10 text-[10px]">03</span> Entrar na conta
+          </a>
+          <a routerLink="/produtor" (click)="closeMenu()" class="flex h-11 w-full items-center gap-2 rounded-xl px-2.5 text-[11px] font-extrabold text-[#383C23] transition hover:bg-[#71774B]/10">
+            <span class="grid size-6 place-items-center rounded-md bg-[#71774B]/10 text-[10px]">04</span> Área do produtor
+          </a>
+        </nav>
+        <div class="mt-auto rounded-xl bg-[#71774B]/10 p-3">
+          <p class="text-[9px] font-extrabold text-[#3E0911]">SemeiAki</p>
+          <p class="mt-1 text-[8px] leading-[1.55] text-[#383C23]/80">Produtos locais, produtores próximos e pedidos direto pelo WhatsApp.</p>
+        </div>
+      </aside>
+    </div>
+  }
+
+  <div class="mx-auto max-w-[762px] px-5 pb-12">
+    <section class="relative overflow-hidden py-12 sm:py-16">
+      <div class="relative z-10 max-w-[525px]">
+        <span class="mb-4 inline-flex rounded-full bg-[#85383E] px-3 py-1.5 text-[9px] font-extrabold tracking-[0.12em] text-[#D7CAB7] uppercase shadow-[0_6px_18px_rgba(62,9,17,0.12)]">
+          Produção local
+        </span>
+        <h1 class="max-w-[510px] text-[clamp(2.3rem,5.2vw,3.55rem)] leading-[0.99] font-extrabold tracking-[-0.055em]">
+          Alimentos frescos de Afogados da Ingazeira.
+        </h1>
+        <p class="mt-4 max-w-[480px] text-[14px] leading-[1.55] font-medium text-[#383C23] sm:text-[15px]">
+          Direto da horta para o seu WhatsApp. Conheça quem produz e compre perto de você.
+        </p>
+        <a routerLink="/produtor" class="mt-5 inline-flex h-10 items-center rounded-xl bg-[#85383E] px-4 text-[10px] font-extrabold text-[#D7CAB7] shadow-[0_6px_16px_rgba(62,9,17,0.13)] transition hover:bg-[#3E0911] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#85383E]">
+          Vendo produtos da minha produção
+        </a>
+      </div>
+      <div class="absolute top-11 right-0 hidden w-[198px] overflow-hidden rounded-[22px] border border-[#71774B]/15 bg-[#fffdf9]/90 p-4 shadow-[0_18px_38px_rgba(56,60,35,0.13)] lg:block">
+        <div class="mb-5 flex items-center justify-between">
+          <span class="rounded-full bg-[#383C23] px-2.5 py-1 text-[8px] font-extrabold tracking-[0.1em] text-[#D7CAB7] uppercase">Feito aqui</span>
+          <span class="grid size-12 -mt-4 -mr-4 place-items-center rounded-bl-[26px] bg-[#71774B]/10 text-[#71774B]" aria-hidden="true">
+            <svg viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21V10M12 14c-4.5 0-7-2.5-7-6.5 4.5 0 7 2.5 7 6.5ZM12 10c0-4 2.5-6.5 7-6.5 0 4-2.5 6.5-7 6.5Z" /></svg>
+          </span>
+        </div>
+        <p class="text-[27px] leading-none font-extrabold tracking-tight">100%</p>
+        <p class="mt-1.5 text-[12px] font-extrabold text-[#383C23]">produção local</p>
+        <div class="mt-4 h-1 overflow-hidden rounded-full bg-[#71774B]/15"><div class="h-full w-[78%] rounded-full bg-[#85383E]"></div></div>
+        <p class="mt-2 text-[8px] leading-[1.5] font-medium text-[#383C23]/75">Mais frescor, renda na região e contato direto com quem planta.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="catalog-title">
+      <div class="mb-6 rounded-2xl border border-white/60 bg-[#fffdf9]/55 p-3.5 shadow-[0_14px_38px_rgba(56,60,35,0.09)] backdrop-blur-sm sm:p-4">
+        <div class="grid gap-3 lg:grid-cols-[minmax(0,1fr)_170px_170px]">
+          <div>
+            <label for="catalog-search" class="mb-1.5 block text-[9px] font-bold text-[#383C23]">Pesquisar produtos</label>
+            <div class="relative">
+              <span class="absolute top-1/2 left-2.5 grid size-7 -translate-y-1/2 place-items-center rounded-lg bg-[#85383E] text-[#D7CAB7] shadow-sm" aria-hidden="true">
+                <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7" /><path d="m20 20-4-4" stroke-linecap="round" /></svg>
+              </span>
+              <input
+                id="catalog-search"
+                type="search"
+                [(ngModel)]="searchQuery"
+                placeholder="Nome do produto, produtor ou sítio"
+                class="h-11 w-full rounded-xl border border-[#71774B]/25 bg-[#fffdf9]/85 pl-12 pr-3 text-[10px] font-medium outline-none transition placeholder:text-[#71774B] focus:border-[#85383E] focus:ring-4 focus:ring-[#85383E]/10"
+              />
+            </div>
+          </div>
+          <div>
+            <label for="category-filter" class="mb-1.5 block text-[9px] font-bold text-[#383C23]">Filtrar por categoria</label>
+            <select id="category-filter" [(ngModel)]="activeCategory" class="h-11 w-full rounded-xl border border-[#71774B]/25 bg-[#fffdf9]/85 px-3 text-[10px] font-bold text-[#3E0911] outline-none focus:border-[#85383E] focus:ring-4 focus:ring-[#85383E]/10">
+              <option value="all">Todos</option>
+              @for (category of categories; track category) {
+                <option [value]="category">{{ category }}</option>
+              }
+            </select>
+          </div>
+          <div>
+            <label for="site-filter" class="mb-1.5 block text-[9px] font-bold text-[#383C23]">Filtrar por sítio</label>
+            <select id="site-filter" [(ngModel)]="activeSite" class="h-11 w-full rounded-xl border border-[#71774B]/25 bg-[#fffdf9]/85 px-3 text-[10px] font-bold text-[#3E0911] outline-none focus:border-[#85383E] focus:ring-4 focus:ring-[#85383E]/10">
+              <option value="all">Todos os sítios</option>
+              @for (site of sites; track site) {
+                <option [value]="site">{{ site }}</option>
+              }
+            </select>
+          </div>
+        </div>
+        <div class="mt-2.5 flex flex-wrap items-center justify-between gap-3 border-t border-[#71774B]/10 pt-2.5">
+          @if (!productsLoading && !productsError) {
+            <p class="text-[9px] font-bold text-[#383C23]">{{ filteredProducts.length }} {{ filteredProducts.length === 1 ? 'produto encontrado' : 'produtos encontrados' }}</p>
+          }
+          @if (hasActiveFilters) {
+            <button type="button" (click)="clearFilters()" class="text-[9px] font-extrabold text-[#85383E] underline underline-offset-4 hover:text-[#3E0911]">Limpar pesquisa e filtros</button>
+          }
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <p class="text-[9px] font-extrabold tracking-[0.14em] text-[#85383E] uppercase">Colhidos na região</p>
+        <h2 id="catalog-title" class="mt-1.5 text-[24px] leading-tight font-extrabold tracking-[-0.045em]">Produtos disponíveis</h2>
+      </div>
+
+      @if (productsLoading) {
+        <p role="status" class="rounded-2xl bg-white/60 p-6 text-center text-base font-semibold">Carregando produtos...</p>
+      } @else if (productsError) {
+        <p role="alert" class="rounded-2xl bg-white/70 p-6 text-center text-base font-semibold text-[#85383E]">{{ productsError }}</p>
+      } @else if (filteredProducts.length > 0) {
+        <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          @for (product of filteredProducts; track product.id) {
+            <article class="group overflow-hidden rounded-[18px] border border-white/70 bg-[#fffdf9]/75 shadow-[0_12px_28px_rgba(56,60,35,0.11)] backdrop-blur-sm transition hover:-translate-y-1 hover:shadow-xl">
+              <div class="relative overflow-hidden">
+                @if (product.image) {
+                  <img [src]="product.image" [alt]="product.name" loading="lazy" class="h-[145px] w-full object-cover transition duration-500 group-hover:scale-105" />
+                } @else {
+                  <div class="grid h-[145px] place-items-center bg-[#71774B]/10 text-[#71774B]" aria-label="Produto sem foto">
+                    <svg viewBox="0 0 24 24" class="size-10" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 21V10M12 14c-4.5 0-7-2.5-7-6.5 4.5 0 7 2.5 7 6.5ZM12 10c0-4 2.5-6.5 7-6.5 0 4-2.5 6.5-7 6.5Z" /></svg>
+                  </div>
+                }
+                <span class="absolute top-3 left-3 rounded-full bg-[#fffdf9]/90 px-2.5 py-1 text-[8px] font-extrabold text-[#383C23] backdrop-blur-sm">{{ product.category }}</span>
+              </div>
+              <div class="p-3">
+                <h3 class="text-[14px] font-extrabold tracking-tight">{{ product.name }}</h3>
+                <p class="mt-1 text-[10px] font-medium text-[#383C23]/75">{{ product.producer }}</p>
+                @if (product.city) {
+                  <p class="mt-1 text-[9px] font-medium text-[#383C23]/75">{{ product.city }} · {{ product.location }}</p>
+                }
+                @if (product.description) {
+                  <p class="mt-2 text-[9px] leading-relaxed text-[#383C23]">{{ product.description }}</p>
+                }
+                <p class="mt-1 text-[8px] font-bold text-[#71774B]">Categoria: <span class="text-[#85383E]">{{ product.category }}</span></p>
+                <div class="mt-3 flex items-end justify-between gap-2 border-t border-[#71774B]/10 pt-2.5">
+                  <p class="text-[16px] font-extrabold text-[#85383E]">{{ product.price }}</p>
+                  @if (product.unit) {
+                    <span class="text-[8px] font-semibold text-[#383C23]/70">/{{ product.unit }}</span>
+                  }
+                </div>
+                <a [href]="whatsappLink(product)" target="_blank" rel="noopener noreferrer" class="mt-3 flex h-10 w-full items-center justify-center gap-1 rounded-xl bg-[#85383E] px-2 text-[9px] font-extrabold text-[#D7CAB7] shadow-[0_6px_16px_rgba(62,9,17,0.13)] transition hover:bg-[#3E0911] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#85383E]">
+                  <svg viewBox="0 0 24 24" class="size-3.5 shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5Z" /><path d="M9 8.5c.4 2.4 2.1 4.1 4.5 4.5" /></svg>
+                  Comprar no WhatsApp
+                </a>
+              </div>
+            </article>
+          }
+        </div>
+      } @else {
+        <div class="rounded-3xl border border-dashed border-[#71774B]/45 bg-white/45 px-6 py-14 text-center">
+          <p class="text-lg font-extrabold">Nenhum produto encontrado</p>
+          <p class="mt-2 font-medium text-[#383C23]">Tente pesquisar outro termo ou selecionar uma categoria diferente.</p>
+        </div>
+      }
+    </section>
+  </div>
+
+  <footer class="border-t border-white/35 bg-[#fffdf9]/45 px-5 py-8 backdrop-blur-sm sm:px-8">
+    <div class="mx-auto flex max-w-[762px] flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
+      <img src="/semeiaki-logo.png" alt="SemeiAki — Produtos da Nossa Terra" class="h-auto w-[95px]" />
+      <p class="text-[9px] font-semibold text-[#383C23]/80">© 2026 SemeiAki · Do campo para a sua região</p>
+    </div>
+  </footer>
+</main>

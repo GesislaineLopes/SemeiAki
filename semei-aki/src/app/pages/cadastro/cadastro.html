@@ -1,0 +1,93 @@
+<main class="login-gradient relative min-h-screen px-5 py-4 text-[#3E0911]">
+  <a routerLink="/login" class="absolute top-5 left-5 z-10 inline-flex h-8 items-center gap-1.5 rounded-lg border border-[#85383E]/15 bg-[#fffdf9]/75 px-2.5 text-[9px] font-bold text-[#85383E] shadow-[0_4px_14px_rgba(62,9,17,0.06)] backdrop-blur-sm transition hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#85383E]">
+    <svg viewBox="0 0 24 24" class="size-3" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <path d="M19 12H5M11 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+    Voltar para o login
+  </a>
+  <section class="mx-auto flex min-h-screen w-full max-w-[350px] flex-col">
+    <header class="flex justify-center pt-[60px]">
+      <a routerLink="/" class="flex items-center" aria-label="SemeiAki, início">
+        <img src="/semeiaki-logo.png" alt="SemeiAki — Produtos da Nossa Terra" class="h-auto w-[128px]" />
+      </a>
+    </header>
+
+    <div class="flex flex-1 items-start pt-[54px] pb-6">
+      <div class="relative w-full text-[#3E0911]">
+        <div class="mb-6">
+          <span class="mb-3 inline-flex rounded-full bg-[#85383E] px-2.5 py-1 text-[8px] font-bold tracking-[0.13em] text-[#D7CAB7] uppercase shadow-[0_5px_14px_rgba(62,9,17,0.12)]">Novo cadastro</span>
+          <h1 class="max-w-[350px] text-[clamp(1.9rem,4vw,2.25rem)] leading-[1.03] font-bold tracking-[-0.055em]">Faça parte do SemeiAki.</h1>
+          <p class="mt-2.5 max-w-[350px] text-sm leading-[1.65] font-medium text-[#383C23]">Crie sua conta para divulgar sua produção e receber pedidos.</p>
+        </div>
+
+        <form (submit)="submitSignup($event)" class="space-y-5">
+          <div>
+            <label for="signup-whatsapp" class="mb-2 block text-sm font-semibold">WhatsApp com DDD *</label>
+            <input id="signup-whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" pattern="[0-9()+ -]{10,20}" maxlength="20" required placeholder="(87) 99999-9999" class="h-14 w-full rounded-xl border border-[#71774B]/55 bg-[#fffdf9]/85 px-4 text-base font-medium outline-none transition placeholder:text-[#71774B] focus:border-[#85383E] focus:bg-white focus:ring-4 focus:ring-[#85383E]/10" />
+            <p class="mt-2 text-xs leading-relaxed font-medium text-[#383C23]">Este número receberá diretamente os pedidos e mensagens dos clientes.</p>
+          </div>
+          <div>
+            <label for="signup-name" class="mb-2 block text-sm font-semibold">Nome ou apelido *</label>
+            <input id="signup-name" name="name" type="text" autocomplete="name" required placeholder="Ex.: Seu Antônio" class="h-14 w-full rounded-xl border border-[#71774B]/55 bg-[#fffdf9]/85 px-4 text-base font-medium outline-none transition placeholder:text-[#71774B] focus:border-[#85383E] focus:bg-white focus:ring-4 focus:ring-[#85383E]/10" />
+            <p class="mt-2 text-xs leading-relaxed font-medium text-[#383C23]">É assim que seus clientes verão e reconhecerão você na plataforma.</p>
+          </div>
+          <div>
+            <label for="property-name" class="mb-2 block text-sm font-semibold">Nome da propriedade <span class="font-normal text-[#71774B]">(opcional)</span></label>
+            <input id="property-name" name="property" type="text" maxlength="80" placeholder="Ex.: Sítio Picos" class="h-14 w-full rounded-xl border border-[#71774B]/55 bg-[#fffdf9]/85 px-4 text-base font-medium outline-none transition placeholder:text-[#71774B] focus:border-[#85383E] focus:bg-white focus:ring-4 focus:ring-[#85383E]/10" />
+            <p class="mt-2 text-xs leading-relaxed font-medium text-[#383C23]">Ajuda a mostrar a origem dos produtos e valorizar sua produção local.</p>
+          </div>
+          <div>
+            <label for="signup-city" class="mb-2 block text-sm font-semibold">Cidade *</label>
+            <input id="signup-city" name="city" type="text" autocomplete="address-level2" required maxlength="80" placeholder="Ex.: Afogados da Ingazeira" class="h-14 w-full rounded-xl border border-[#71774B]/55 bg-[#fffdf9]/85 px-4 text-base font-medium outline-none transition placeholder:text-[#71774B] focus:border-[#85383E] focus:bg-white focus:ring-4 focus:ring-[#85383E]/10" />
+          </div>
+          <div>
+            <label for="signup-location" class="mb-2 block text-sm font-semibold">Localização ou endereço *</label>
+            <input id="signup-location" name="location" type="text" autocomplete="street-address" required maxlength="160" placeholder="Comunidade, estrada, bairro ou endereço" class="h-14 w-full rounded-xl border border-[#71774B]/55 bg-[#fffdf9]/85 px-4 text-base font-medium outline-none transition placeholder:text-[#71774B] focus:border-[#85383E] focus:bg-white focus:ring-4 focus:ring-[#85383E]/10" />
+            <p class="mt-2 text-xs leading-relaxed font-medium text-[#383C23]">Informe onde sua produção está localizada para ajudar os clientes da região.</p>
+          </div>
+          <div>
+            <label for="signup-reference" class="mb-2 block text-sm font-semibold">Ponto de referência <span class="font-normal text-[#71774B]">(opcional)</span></label>
+            <input id="signup-reference" name="reference" type="text" maxlength="120" placeholder="Ex.: Próximo à igreja ou ao mercado" class="h-14 w-full rounded-xl border border-[#71774B]/55 bg-[#fffdf9]/85 px-4 text-base font-medium outline-none transition placeholder:text-[#71774B] focus:border-[#85383E] focus:bg-white focus:ring-4 focus:ring-[#85383E]/10" />
+            <p class="mt-2 text-xs leading-relaxed font-medium text-[#383C23]">Uma indicação simples pode facilitar a retirada ou a entrega dos produtos.</p>
+          </div>
+          <div>
+            <label for="signup-email" class="mb-2 block text-sm font-semibold">E-mail *</label>
+            <input id="signup-email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="voce@exemplo.com" class="h-14 w-full rounded-xl border border-[#71774B]/55 bg-[#fffdf9]/85 px-4 text-base font-medium outline-none transition placeholder:text-[#71774B] focus:border-[#85383E] focus:bg-white focus:ring-4 focus:ring-[#85383E]/10" />
+            <p class="mt-2 text-xs leading-relaxed font-medium text-[#383C23]">Será usado para entrar na sua conta.</p>
+          </div>
+          <div>
+            <label for="signup-password" class="mb-2 block text-sm font-semibold">Senha *</label>
+            <div class="relative">
+              <input id="signup-password" name="password" [type]="showPassword ? 'text' : 'password'" autocomplete="new-password" required minlength="8" maxlength="128" placeholder="Crie uma senha segura" class="h-14 w-full rounded-xl border border-[#71774B]/55 bg-[#fffdf9]/85 px-4 pr-14 text-base font-medium outline-none transition placeholder:text-[#71774B] focus:border-[#85383E] focus:bg-white focus:ring-4 focus:ring-[#85383E]/10" />
+              <button type="button" (click)="showPassword = !showPassword" class="absolute top-1/2 right-2 -translate-y-1/2 rounded-lg p-2 text-[#71774B] transition hover:bg-[#D7CAB7] hover:text-[#383C23] focus-visible:outline-2 focus-visible:outline-[#85383E]" [attr.aria-label]="showPassword ? 'Ocultar senha' : 'Mostrar senha'">
+                @if (showPassword) {
+                  <svg viewBox="0 0 24 24" class="size-3.5" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <path d="M3 12s3.5-6 9-6 9 6 9 6-3.5 6-9 6-9-6-9-6Z" /><circle cx="12" cy="12" r="2.5" />
+                  </svg>
+                } @else {
+                  <svg viewBox="0 0 24 24" class="size-3.5" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <path d="m3 3 18 18M10.6 10.7a2 2 0 0 0 2.7 2.7M9.9 4.4A11.7 11.7 0 0 1 12 4c5.5 0 9 6 9 6a16 16 0 0 1-2.1 2.9M6.2 6.2C4.1 7.6 3 10 3 10s3.5 6 9 6c1.2 0 2.3-.3 3.3-.7" stroke-linecap="round" />
+                  </svg>
+                }
+              </button>
+            </div>
+            <p class="mt-2 text-xs leading-relaxed font-medium text-[#383C23]">Use pelo menos 8 caracteres para proteger seus dados e anúncios.</p>
+          </div>
+
+          <button type="submit" [disabled]="submitting" class="flex min-h-14 w-full items-center justify-center gap-2 rounded-xl bg-[#85383E] px-4 py-3 text-base font-extrabold text-[#D7CAB7] shadow-[0_8px_20px_rgba(62,9,17,0.15)] transition hover:-translate-y-0.5 hover:bg-[#3E0911] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#85383E] disabled:opacity-70">
+            {{ submitting ? 'Criando conta...' : 'Criar minha conta' }}
+            <svg viewBox="0 0 24 24" class="size-3.5" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M5 12h14M14 7l5 5-5 5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <p aria-live="polite" class="min-h-6 text-center text-sm font-semibold text-[#85383E]">{{ message }}</p>
+        </form>
+      </div>
+    </div>
+
+    <footer class="flex items-center justify-between gap-4 py-4 text-[8px] font-semibold text-[#383C23]/80">
+      <span>© 2026 SemeiAki</span>
+      <span>Do campo para a sua região</span>
+    </footer>
+  </section>
+</main>

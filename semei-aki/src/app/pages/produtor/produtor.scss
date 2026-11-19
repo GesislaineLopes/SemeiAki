@@ -1,0 +1,32 @@
+.producer-input {
+  width: 100%;
+  min-height: 3.5rem;
+  border: 1px solid rgb(113 119 75 / 35%);
+  border-radius: 0.75rem;
+  background: rgb(255 253 249 / 90%);
+  padding: 0.75rem 0.9rem;
+  color: #3e0911;
+  font-size: 1rem;
+  outline: none;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.producer-input:focus {
+  border-color: #85383e;
+  box-shadow: 0 0 0 4px rgb(133 56 62 / 10%);
+}
+
+.producer-input::placeholder {
+  color: #71774b;
+}
+
+textarea.producer-input {
+  line-height: 1.5;
+}
+
+.file-picker:focus-within {
+  outline: 3px solid #3e0911;
+  outline-offset: 3px;
+}

@@ -1,0 +1,102 @@
+<main class="login-gradient min-h-screen px-5 py-8 text-[#3E0911] sm:py-12">
+  @if (checkingSession) {
+    <p role="status" class="mx-auto max-w-[760px] rounded-xl bg-white/70 p-6 text-lg font-bold">Verificando sua conta...</p>
+  } @else if (errorMessage && !producer) {
+    <section class="mx-auto max-w-[560px] rounded-2xl bg-white/80 p-6 text-center">
+      <p role="alert" class="text-base font-bold">{{ errorMessage }}</p>
+      <button type="button" (click)="verifySession()" class="mt-5 min-h-14 rounded-xl bg-[#85383E] px-5 text-base font-extrabold text-[#D7CAB7]">Tentar novamente</button>
+    </section>
+  } @else if (producer) {
+    <section class="mx-auto w-full max-w-[760px]">
+      <header class="mb-8 flex items-center justify-between gap-4">
+        <a routerLink="/" aria-label="Voltar ao início">
+          <img src="/semeiaki-logo.png" alt="SemeiAki — Produtos da Nossa Terra" class="w-[105px]" />
+        </a>
+        <div class="flex items-center gap-3">
+          <a routerLink="/" class="min-h-12 inline-flex items-center text-sm font-extrabold text-[#85383E] underline underline-offset-4">Ver catálogo</a>
+          <button type="button" (click)="logout()" class="min-h-12 rounded-lg border border-[#85383E]/25 px-4 text-sm font-bold text-[#85383E]">Sair da conta</button>
+        </div>
+      </header>
+
+      <div class="mb-6">
+        <span class="mb-3 inline-flex rounded-full bg-[#85383E] px-3 py-1.5 text-[9px] font-extrabold tracking-[0.12em] text-[#D7CAB7] uppercase">Área do produtor</span>
+        <h1 class="text-[clamp(2rem,5vw,3rem)] leading-tight font-extrabold tracking-[-0.05em]">Anuncie sua produção.</h1>
+        <p class="mt-2 max-w-[560px] text-base leading-relaxed text-[#383C23]">Conte aos clientes o que você vende e onde podem encontrar sua produção.</p>
+      </div>
+
+      <div class="mb-5 rounded-2xl border border-[#71774B]/20 bg-white/70 p-5">
+        <h2 class="text-lg font-extrabold">Anunciando como {{ producer.name }}</h2>
+        <p class="mt-2 text-sm leading-relaxed text-[#383C23]">
+          {{ producer.site || 'Propriedade não informada' }} · {{ producer.city }} · {{ producer.location }}
+        </p>
+        @if (producer.reference) {
+          <p class="mt-1 text-sm text-[#383C23]">Ponto de referência: {{ producer.reference }}</p>
+        }
+        <p class="mt-1 text-sm font-semibold text-[#383C23]">WhatsApp: {{ producer.phone }}</p>
+      </div>
+
+      <form #productForm="ngForm" (ngSubmit)="publishProduct(imageInput)" class="space-y-7 rounded-3xl border border-white/65 bg-[#fffdf9]/75 p-5 shadow-[0_18px_48px_rgba(56,60,35,0.12)] backdrop-blur-sm sm:p-8">
+      <p class="rounded-xl bg-[#71774B]/10 p-4 text-sm leading-relaxed text-[#383C23]">Os campos marcados com * são obrigatórios. As caixas mostram exemplos do que você pode escrever.</p>
+      <section aria-labelledby="product-info">
+        <h2 id="product-info" class="mb-5 text-xl font-extrabold">Sobre o produto</h2>
+        <div class="grid gap-5 sm:grid-cols-2">
+          <div>
+            <label for="product-name" class="mb-2 block text-sm font-bold">Nome do produto *</label>
+            <input id="product-name" name="name" [(ngModel)]="product.name" required maxlength="100" placeholder="Ex.: Tomate cereja" class="producer-input" />
+          </div>
+          <div>
+            <label for="product-category" class="mb-2 block text-sm font-bold">Categoria *</label>
+            <select id="product-category" name="category" [(ngModel)]="product.category" required class="producer-input">
+              @for (category of categories; track category) {
+                <option [value]="category">{{ category }}</option>
+              }
+            </select>
+          </div>
+          <div>
+            <label for="product-price" class="mb-2 block text-sm font-bold">Preço (R$) *</label>
+            <input id="product-price" name="price" [(ngModel)]="product.price" required type="number" min="0.01" step="0.01" placeholder="0,00" class="producer-input" />
+          </div>
+          <div class="sm:col-span-2">
+            <label for="product-description" class="mb-2 block text-sm font-bold">Descrição <span class="font-normal text-[#71774B]">(opcional)</span></label>
+            <textarea id="product-description" name="description" [(ngModel)]="product.description" maxlength="300" rows="3" placeholder="Conte um pouco sobre o produto, a colheita ou a disponibilidade." class="producer-input h-auto min-h-24 py-3"></textarea>
+          </div>
+          <div class="sm:col-span-2">
+            <span class="mb-2 block text-sm font-bold">Foto do produto <span class="font-normal text-[#71774B]">(opcional)</span></span>
+            <p id="product-image-help" class="mb-3 text-sm leading-relaxed text-[#383C23]">Escolha uma foto guardada no seu celular ou computador. No celular, você também pode tirar uma foto na hora.</p>
+            <div class="flex flex-wrap items-center gap-3">
+              <label for="product-image" class="file-picker inline-flex min-h-14 cursor-pointer items-center gap-3 rounded-xl border-2 border-[#85383E] bg-white px-5 py-3 text-base font-extrabold text-[#85383E] transition hover:bg-[#85383E]/5">
+                <svg viewBox="0 0 24 24" class="size-6 shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h3l1.5-2h7L17 7h3v12H4z" /><circle cx="12" cy="13" r="3.5" /></svg>
+                Escolher foto
+                <input #imageInput id="product-image" name="image" type="file" accept="image/jpeg,image/png,image/webp" aria-describedby="product-image-help" (change)="selectImage($event)" class="sr-only" />
+              </label>
+              @if (imageFileName) {
+                <span aria-live="polite" class="text-sm font-semibold text-[#383C23]">{{ imageFileName }}</span>
+                <button type="button" (click)="removeImage(imageInput)" class="min-h-12 rounded-lg px-3 text-sm font-bold text-[#85383E] underline underline-offset-4">Remover foto</button>
+              }
+            </div>
+            <p class="mt-2 text-sm text-[#383C23]">JPG, PNG ou WEBP. Tamanho máximo: 1 MB.</p>
+            @if (product.image) {
+              <img [src]="product.image" alt="Prévia da foto escolhida para o produto" class="mt-4 h-40 w-full rounded-xl border border-[#71774B]/20 object-cover sm:w-64" />
+            }
+          </div>
+        </div>
+      </section>
+
+      <p class="rounded-xl bg-[#71774B]/10 p-4 text-sm leading-relaxed text-[#383C23]">
+        O anúncio será salvo na sua conta e ficará disponível no catálogo para os clientes.
+      </p>
+
+      @if (successMessage) {
+        <p role="status" class="rounded-xl bg-[#71774B]/15 p-4 text-base font-bold text-[#383C23]">{{ successMessage }}</p>
+      }
+      @if (errorMessage) {
+        <p role="alert" class="rounded-xl bg-red-50 p-4 text-base font-bold text-[#85383E]">{{ errorMessage }}</p>
+      }
+
+      <button type="submit" [disabled]="isPublishing" class="flex min-h-14 w-full items-center justify-center rounded-xl bg-[#85383E] px-5 py-3 text-base font-extrabold text-[#D7CAB7] shadow-[0_8px_20px_rgba(62,9,17,0.15)] transition hover:bg-[#3E0911] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#85383E] disabled:opacity-70">
+        {{ isPublishing ? 'Publicando...' : 'Publicar produto no catálogo' }}
+      </button>
+      </form>
+    </section>
+  }
+</main>
